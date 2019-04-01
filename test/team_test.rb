@@ -34,16 +34,16 @@ class TeamTest < Minitest::Test
     assert_equal [], team.players
   end
 
-  def test_it_can_add_players
-    team.add(mbappe)
-    team.add(pogba)
+  def test_it_can_add_player_players
+    team.add_player(mbappe)
+    team.add_player(pogba)
 
     assert_equal [mbappe, pogba], team.players
   end
 
   def test_it_can_get_players_by_position
-    team.add(mbappe)
-    team.add(pogba)
+    team.add_player(mbappe)
+    team.add_player(pogba)
 
     assert_equal [pogba], team.players_by_position("midfielder")
     assert_equal [], team.players_by_position("defender")
