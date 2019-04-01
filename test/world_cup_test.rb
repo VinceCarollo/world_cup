@@ -23,7 +23,7 @@ class WorldCupTest < Minitest::Test
 
   def test_it_exists
     world_cup = WorldCup.new(2018, [france, croatia])
-    
+
     assert_instance_of WorldCup, world_cup
   end
 
@@ -58,5 +58,21 @@ class WorldCupTest < Minitest::Test
     croatia.eliminated = true
 
     assert_equal [pogba], world_cup.active_players_by_position("midfielder")
+  end
+
+  def test_it_can_get_ALL_players_by_position
+    france.add_player(mbappe)
+    france.add_player(pogba)
+    croatia.add_player(modric)
+    croatia.add_player(vida)
+    world_cup = WorldCup.new(2018, [france, croatia])
+
+    expected = {
+    "forward" => [mbappe],
+    "midfielder" => [pogba, modric],
+    "defender" => [vida]
+    }
+
+    assert_equal expected, world_cup.all_players_by_position
   end
 end
